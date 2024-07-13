@@ -33,11 +33,24 @@ public static class KeyGen
         return result.ToString();
     }
 
+    /// <summary>
+    /// Generates a random key for AES encryption. Be sure to save the key somewhere safe.
+    /// This is only used to generate a key for the AES encryption. 
+    /// Everytime a new key is generated so don't directly use with encryption functions.
+    /// </summary>
+    /// <param name="keySize"></param>
+    /// <returns></returns>
     public static string GenerateAesKey(KeySize keySize)
     {
         return GenerateRandomString(Convert.ToInt32(keySize));
     }
 
+    /// <summary>
+    /// Generates a random IV for AES encryption. Be sure to save the IV somewhere safe.
+    /// This is only used to generate a key for the AES encryption.
+    /// Everytime a new key is generated so don't directly use with encryption functions.
+    /// </summary>
+    /// <returns></returns>
     public static string GenerateIv()
     {
         return GenerateRandomString(Convert.ToInt32(KeySize.KeySize_128));

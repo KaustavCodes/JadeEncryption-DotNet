@@ -8,6 +8,12 @@ private const int SaltSize = 16; // 128 bit
     private const int KeySize = 32; // 256 bit
     private const int Iterations = 10; // Number of iterations for PBKDF2
 
+    /// <summary>
+    /// Hashes the data using PBKDF2 with HMAC-SHA256
+    /// To use just pass a string that you wish to hash
+    /// </summary>
+    /// <param name="dataToHash"></param>
+    /// <returns></returns>
     public string HashData(string dataToHash)
     {
         using (var algorithm = new Rfc2898DeriveBytes(dataToHash, SaltSize, Iterations, HashAlgorithmName.SHA256))
@@ -19,6 +25,15 @@ private const int SaltSize = 16; // 128 bit
         }
     }
 
+    /// <summary>
+    /// Verifies the hash with the unhashed string. 
+    /// This is used to verify the hash with the original string. 
+    /// If it matches then the hash is valid.
+    /// </summary>
+    /// <param name="hash">The hashed string</param>
+    /// <param name="unhashedString">The unhashed string to verify match</param>
+    /// <returns></returns>
+    /// <exception cref="FormatException"></exception>
     public bool VerifyHash(string hash, string unhashedString)
     {
         var parts = hash.Split('.', StringSplitOptions.RemoveEmptyEntries);
