@@ -29,13 +29,25 @@ JadedEncryption provides easy-to-use methods for both one-way (hashing) and two-
 1. **Create an instance of OnewayEncryption class:**
     ```bash
     OnewayEncryption oneWayEncryption = new OnewayEncryption();
+    ```
 
-2. **Encrypt the data:**
+    Alternatively you can also save your Key and IV in the appsettings.json file if you are working on a .net web application as below
+   ```bash
+  {
+    "DataEncryption": {
+      "Key": "YOUR KEY",
+      "IV": "YOUR IV"
+    }
+  }
+   ```
+   
+
+3. **Encrypt the data:**
     The application will include the salt so no need to separately store the salt.
     ```bash
     string encrypedString = oneWayEncryption.HashData("This string is not encrypted");
 
-3. **Verify the hash against a probably match. Ideally passwords**
+4. **Verify the hash against a probably match. Ideally passwords**
     Here you pass in the original hashed string as the first argument and the second parameter is the string that should match.
     ```bash
     if(oneWayEncryption.VerifyHash(encrypedString, "Not encryped string")) 
