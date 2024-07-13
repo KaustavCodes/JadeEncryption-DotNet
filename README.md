@@ -38,9 +38,41 @@ JadedEncryption provides easy-to-use methods for both one-way (hashing) and two-
 3. **Verify the hash against a probably match. Ideally passwords**
     Here you pass in the original hashed string as the first argument and the second parameter is the string that should match.
     ```bash
-    if(oneWayEncryption.VerifyHash(encrypedString, "Not encryped string")) {
+    if(oneWayEncryption.VerifyHash(encrypedString, "Not encryped string")) 
+    {
         Console.WriteLine("Hash is verified which is the expected result");
     }
 
 
+## Demo for Two way Encryption ideally for storing data encryped at rest and then decrypting it to use in your application.
 
+So this will require a 16 or 24 or 32 bit key and a 16 bit IV. You can use the Key Gen class to generate these. Note that everytime the Key Gen may generate new keys so generate once and save in your application. And in future encrypt decrypt requests use the same key. You can also bring in your own keys but make sure they follow the AES Encryption rules.
+
+!Important: Don't directly pass the generate key function in the TwoWayEncryption constructor. If done, the encryptions will not match as the encryption and decription keys need to be same.
+
+1. **Generate Keys or Bring your own AES Keys**
+    ```bash
+    string key = KeyGen.GenerateAesKey(KeySize.KeySize_256);
+    string iv = KeyGen.GenerateIv();
+
+
+2. **Instanciate the TwoWayEncryption class:**
+    ```bash
+    TwoWayEncryption twoWayEncrypt = new TwoWayEncryption(key, iv);
+
+3. **Encrypt the data by calling the Encrypt() Method:**
+    ```bash
+    string twoWayEncryptedString = twoWayEncrypt.Encrypt("HELLO WORLD");
+
+4. **Decrypt the data**
+    ```bash
+    string twoWayDecryptedString = twoWay.Decrypt([YOUR TWO WAY ENCRYPTED STRING]]);
+
+
+
+## Important Note
+Both encryptions use different methods. The hashing methods encription cannot be passed to the two way decryption to be decrypted. 
+
+
+## Conclusion
+Happy Coding!
