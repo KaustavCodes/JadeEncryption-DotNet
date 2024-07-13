@@ -12,16 +12,16 @@ Console.WriteLine("Data to Encrypt = " + toEncript);
 Console.WriteLine("Encryped Data: " + encrypedStuff);
 
 if(oneWay.VerifyHash(encrypedStuff, toEncript)) {
-    Console.WriteLine("This one passed");
+    Console.WriteLine("Hash is verified which is the expected result");
 }
 
 if(!oneWay.VerifyHash(encrypedStuff, "HELLO WORLD"))
 {
-    Console.WriteLine("This one should have failed");
+    Console.WriteLine("Failed to match hash with was the expected result");
 }
 
 
-Console.WriteLine("Testing Two Way Encription");
+Console.WriteLine("Testing Two Way Encryption");
 
 string key = KeyGen.GenerateAesKey(KeySize.KeySize_256);
 string iv = KeyGen.GenerateIv();
