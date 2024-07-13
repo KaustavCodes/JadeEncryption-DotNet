@@ -33,13 +33,12 @@ JadedEncryption provides easy-to-use methods for both one-way (hashing) and two-
 
     Alternatively you can also save your Key and IV in the appsettings.json file if you are working on a .net web application as below
    ```bash
-  {
-    "DataEncryption": {
-      "Key": "YOUR KEY",
-      "IV": "YOUR IV"
+    {
+      "DataEncryption": {
+        "Key": "YOUR KEY",
+        "IV": "YOUR IV"
+      }
     }
-  }
-   ```
    
 
 3. **Encrypt the data:**
