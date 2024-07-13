@@ -71,7 +71,7 @@ So this will require a 16 or 24 or 32 bit key and a 16 bit IV. You can use the K
 
 
 ## Important Note
-Both encryptions use different methods. The hashing methods encription cannot be passed to the two way decryption to be decrypted. 
+Both encryptions use different methods. The hashing method's encription cannot be passed to the two way decryption to be decrypted. 
 
 
 ## Conclusion
