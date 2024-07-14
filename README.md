@@ -31,6 +31,11 @@ JadedEncryption provides easy-to-use methods for both one-way (hashing) and two-
     OnewayEncryption oneWayEncryption = new OnewayEncryption();
     ```
 
+    Or you can also create an instance by passing a number of iterations to the constructor. Higher the number of iterations more secure but will also require more system resource to process.
+    ```bash
+    OnewayEncryption oneWayEncryption = new OnewayEncryption(5);
+    ```
+
     Alternatively you can also save your Key and IV in the appsettings.json file if you are working on a .net web application as below
    ```bash
     {
@@ -77,7 +82,7 @@ So this will require a 16 or 24 or 32 bit key and a 16 bit IV. You can use the K
 
 4. **Decrypt the data**
     ```bash
-    string twoWayDecryptedString = twoWay.Decrypt([YOUR TWO WAY ENCRYPTED STRING]]);
+    string twoWayDecryptedString = twoWayEncrypt.Decrypt([YOUR TWO WAY ENCRYPTED STRING]]);
 
 
 

@@ -3,7 +3,7 @@ using JadedEncryption;
 
 
 Console.WriteLine("Testing One Way Encription");
-OnewayEncryption oneWay = new OnewayEncryption();
+OnewayEncryption oneWay = new OnewayEncryption(2);
 string toEncript = "this is a demo string";
 
 string encrypedStuff = oneWay.HashData(toEncript);
