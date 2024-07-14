@@ -4,9 +4,23 @@ namespace JadedEncryption;
 
 public class OnewayEncryption
 {
-private const int SaltSize = 16; // 128 bit 
+    private const int SaltSize = 16; // 128 bit 
     private const int KeySize = 32; // 256 bit
-    private const int Iterations = 10; // Number of iterations for PBKDF2
+    private int Iterations = 10; // Number of iterations for PBKDF2
+
+    public OnewayEncryption()
+    {
+        Iterations = 10;
+    }
+
+    public OnewayEncryption(int iterations)
+    {
+        if(iterations <= 1)
+        {
+            throw new ArgumentException("Iterations must be greater than 1");
+        }
+        Iterations = iterations;
+    }
 
     /// <summary>
     /// Hashes the data using PBKDF2 with HMAC-SHA256
