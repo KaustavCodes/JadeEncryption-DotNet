@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <PackageId>JadedEncryption</PackageId> 
     <Version>1.0.3</Version> 
-    <Authors>JadedHere</Authors>
+    <Authors>BeatNBytes</Authors>
     <Description>This repository provides standard methods to one way encrypt data and also 2 way data encryption and decryption.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
