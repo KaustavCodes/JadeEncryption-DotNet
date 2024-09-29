@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace JadedEncryption;
+namespace JadeEncryption;
 
 public enum KeySize
 {
