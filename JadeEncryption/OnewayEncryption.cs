@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace JadedEncryption;
+namespace JadeEncryption;
 
 public class OnewayEncryption
 {

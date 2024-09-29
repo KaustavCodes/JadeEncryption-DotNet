@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\JadedEncryption\JadedEncryption.csproj" />
+    <ProjectReference Include="..\JadeEncryption\JadeEncryption.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

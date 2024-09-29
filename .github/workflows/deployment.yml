@@ -19,20 +19,20 @@ jobs:
         dotnet-version: '8.x'
 
     - name: Restore dependencies
-      run: dotnet restore JadedEncryption
+      run: dotnet restore JadeEncryption
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore JadedEncryption
+      run: dotnet build --configuration Release --no-restore JadeEncryption
 
     - name: Run tests
-      run: dotnet test --no-restore --verbosity normal JadedEncryption
+      run: dotnet test --no-restore --verbosity normal JadeEncryption
 
     - name: Publish to GitHub Packages
-      run: dotnet pack --configuration Release -o ./nupkg JadedEncryption
+      run: dotnet pack --configuration Release -o ./nupkg JadeEncryption
     - name: Publish to GitHub Packages
-      run: dotnet nuget push ./nupkg/*.nupkg -s https://nuget.pkg.github.com/JadedSoftwares/index.json -k ${{ secrets.MY_GITHUB_TOKEN }}
+      run: dotnet nuget push ./nupkg/*.nupkg -s https://nuget.pkg.github.com/KaustavCodes/index.json -k ${{ secrets.MY_GITHUB_TOKEN }}
       env:
-        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+        MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
 
     - name: Publish to NuGet
       run: dotnet nuget push ./nupkg/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json

@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using JadedEncryption;
+using JadeEncryption;
 
 
 Console.WriteLine("Testing One Way Encription");

@@ -6,6 +6,20 @@
 
 JadedEncryption provides easy-to-use methods for both one-way (hashing) and two-way (reversible) encryption within your .NET 8 projects.
 
+
+## Important: Migrating from Jaded Encryption
+**Those previously using Jaded Encryption can migrate to this by changing the below reference**
+```
+using JadedEncryption;
+```
+
+To
+
+```
+using JadeEncryption;
+```
+
+
 ## Features
 
 * **One-Way Encryption (Hashing):**
