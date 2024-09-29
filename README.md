@@ -1,16 +1,16 @@
-# JadedEncryption: .NET 8 Encryption Library
+# JadeEncryption: .NET 8 Encryption Library
 
 [![.NET 8](https://img.shields.io/badge/.NET-8-blue.svg)]([https://aka.ms/new-console-template](https://aka.ms/new-console-template))
-[![Nuget](https://img.shields.io/nuget/v/BytesAssetManagement.svg)](https://www.nuget.org/packages/JadedEncryption) 
+[![Nuget](https://img.shields.io/nuget/v/BytesAssetManagement.svg)](https://www.nuget.org/packages/JadeEncryption) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-JadedEncryption provides easy-to-use methods for both one-way (hashing) and two-way (reversible) encryption within your .NET 8 projects.
+JadeEncryption provides easy-to-use methods for both one-way (hashing) and two-way (reversible) encryption within your .NET 8 projects.
 
 
 ## Important: Migrating from Jaded Encryption
 **Those previously using Jaded Encryption can migrate to this by changing the below reference**
 ```
-using JadedEncryption;
+using JadeEncryption;
 ```
 
 To
@@ -34,12 +34,12 @@ using JadeEncryption;
 
 1. **Install the Package:**
    ```bash
-   dotnet add package JadedEncryption
+   dotnet add package JadeEncryption
 
 2. **Referenc the Package:**
     Add a using statement in your package
     ```bash
-    using JadedEncryption;
+    using JadeEncryption;
 
 ## Demo for One way Encryption ideally for passwords
 1. **Create an instance of OnewayEncryption class:**
