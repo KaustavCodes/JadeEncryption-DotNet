@@ -1,7 +1,8 @@
 # JadeEncryption: .NET 8 Encryption Library
 
 [![.NET 8](https://img.shields.io/badge/.NET-8-blue.svg)]([https://aka.ms/new-console-template](https://aka.ms/new-console-template))
-[![Nuget](https://img.shields.io/nuget/v/BytesAssetManagement.svg)](https://www.nuget.org/packages/JadeEncryption) 
+[![.NET 9](https://img.shields.io/badge/.NET-9-blue.svg)]([https://aka.ms/new-console-template](https://aka.ms/new-console-template))
+[![Nuget](https://img.shields.io/nuget/v/JadeEncryption.svg)](https://www.nuget.org/packages/JadeEncryption)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 JadeEncryption provides easy-to-use methods for both one-way (hashing) and two-way (reversible) encryption within your .NET 8 projects.
