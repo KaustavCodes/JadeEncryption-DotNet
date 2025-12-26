@@ -1,7 +1,7 @@
 # JadeEncryption: .NET 8 Encryption Library
 
-[![.NET 8](https://img.shields.io/badge/.NET-8-blue.svg)]([https://aka.ms/new-console-template](https://aka.ms/new-console-template))
-[![Nuget](https://img.shields.io/nuget/v/BytesAssetManagement.svg)](https://www.nuget.org/packages/JadeEncryption) 
+[![.NET 8](https://img.shields.io/badge/.NET-8-blue.svg)](https://aka.ms/new-console-template)
+[![Nuget](https://img.shields.io/nuget/v/JadeEncryption.svg)](https://www.nuget.org/packages/JadeEncryption)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 JadeEncryption provides easy-to-use methods for both one-way (hashing) and two-way (reversible) encryption within your .NET 8 projects.
@@ -36,75 +36,90 @@ using JadeEncryption;
    ```bash
    dotnet add package JadeEncryption
 
-2. **Referenc the Package:**
-    Add a using statement in your package
-    ```bash
+2. **Reference the Package:**
+    Add a using statement in your code:
+    ```csharp
     using JadeEncryption;
 
-## Demo for One way Encryption ideally for passwords
-1. **Create an instance of OnewayEncryption class:**
-    ```bash
+
+## Demo: One-Way Encryption (Hashing)
+
+1. **Create an instance of OnewayEncryption:**
+    ```csharp
     OnewayEncryption oneWayEncryption = new OnewayEncryption();
     ```
-
-    Or you can also create an instance by passing a number of iterations to the constructor. Higher the number of iterations more secure but will also require more system resource to process.
-    ```bash
-    OnewayEncryption oneWayEncryption = new OnewayEncryption(5);
+    Or specify a custom iteration count (recommended: 10,000+ for new projects):
+    ```csharp
+    OnewayEncryption oneWayEncryption = new OnewayEncryption(10000);
     ```
 
-    Alternatively you can also save your Key and IV in the appsettings.json file if you are working on a .net web application as below
-   ```bash
-    {
-      "DataEncryption": {
-        "Key": "YOUR KEY",
-        "IV": "YOUR IV"
-      }
-    }
-   
+    > **Security Note:**
+    > The default iteration count is 10 for backward compatibility. For new projects, use a higher value (e.g., 10,000 or more) for better security.
 
-3. **Encrypt the data:**
-    The application will include the salt so no need to separately store the salt.
-    ```bash
-    string encrypedString = oneWayEncryption.HashData("This string is not encrypted");
+2. **Hash the data:**
+    The salt is included in the output, so you do not need to store it separately.
+    ```csharp
+    string hashedString = oneWayEncryption.HashData("This string is not encrypted");
+    ```
 
-4. **Verify the hash against a probably match. Ideally passwords**
-    Here you pass in the original hashed string as the first argument and the second parameter is the string that should match.
-    ```bash
-    if(oneWayEncryption.VerifyHash(encrypedString, "Not encryped string")) 
+3. **Verify the hash:**
+    Pass the original hash and the string to check:
+    ```csharp
+    if(oneWayEncryption.VerifyHash(hashedString, "This string is not encrypted"))
     {
         Console.WriteLine("Hash is verified which is the expected result");
     }
+    ```
 
 
-## Demo for Two way Encryption ideally for storing data encryped at rest and then decrypting it to use in your application.
 
-So this will require a 16 or 24 or 32 bit key and a 16 bit IV. You can use the Key Gen class to generate these. Note that everytime the Key Gen may generate new keys so generate once and save in your application. And in future encrypt decrypt requests use the same key. You can also bring in your own keys but make sure they follow the AES Encryption rules.
+## Demo: Two-Way Encryption (AES)
 
-!Important: Don't directly pass the generate key function in the TwoWayEncryption constructor. If done, the encryptions will not match as the encryption and decription keys need to be same.
+You need a 16, 24, or 32 byte key and a 16 byte IV. Use the KeyGen class to generate these. **Generate once and store securely** (e.g., environment variables, Azure Key Vault). Do not generate a new key/IV for every operation.
 
-1. **Generate Keys or Bring your own AES Keys**
-    ```bash
+> **Important:**
+> Do NOT call the key/IV generator every time you encrypt or decrypt. The key and IV must remain the same for decryption to work.
+
+1. **Generate or provide AES keys:**
+    ```csharp
     string key = KeyGen.GenerateAesKey(KeySize.KeySize_256);
     string iv = KeyGen.GenerateIv();
+    ```
 
-
-2. **Instanciate the TwoWayEncryption class:**
-    ```bash
+2. **Instantiate the TwoWayEncryption class:**
+    ```csharp
     TwoWayEncryption twoWayEncrypt = new TwoWayEncryption(key, iv);
+    ```
 
-3. **Encrypt the data by calling the Encrypt() Method:**
-    ```bash
+3. **Encrypt data:**
+    ```csharp
     string twoWayEncryptedString = twoWayEncrypt.Encrypt("HELLO WORLD");
+    ```
 
-4. **Decrypt the data**
-    ```bash
-    string twoWayDecryptedString = twoWayEncrypt.Decrypt([YOUR TWO WAY ENCRYPTED STRING]]);
+4. **Decrypt data:**
+    ```csharp
+    string twoWayDecryptedString = twoWayEncrypt.Decrypt(twoWayEncryptedString);
+    ```
 
+> **Security Note:**
+> Never hardcode keys/IVs in your source code. Store them securely using environment variables or a secrets manager.
 
+## Security Best Practices
+
+- Use a high iteration count (10,000+) for PBKDF2 hashing.
+- Store encryption keys and IVs securely (never in source code).
+- Rotate keys periodically and follow your organization's security policies.
+- Do not use the same key/IV pair for multiple applications.
+- Always validate user input and handle exceptions securely.
 
 ## Important Note
-Both encryptions use different methods. The hashing method's encription cannot be passed to the two way decryption to be decrypted. 
+One-way and two-way encryption are not interchangeable. You cannot decrypt a hash produced by the one-way method.
 
 
-## Conclusion
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
 Happy Coding!
