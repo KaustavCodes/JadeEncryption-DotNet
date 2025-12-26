@@ -15,7 +15,7 @@ public class OnewayEncryption
 
     public OnewayEncryption(int iterations)
     {
-        if(iterations <= 1)
+        if (iterations <= 1)
         {
             throw new ArgumentException("Iterations must be greater than 1");
         }
