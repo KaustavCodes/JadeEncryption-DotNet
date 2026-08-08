@@ -33,7 +33,13 @@ jobs:
       env:
         MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
 
-    - name: Publish to NuGet
-      run: dotnet nuget push ./nupkg/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-      env:
-        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+    - name: NuGet login (OIDC)
+      id: nuget_login
+      continue-on-error: true
+      uses: NuGet/login@v1
+      with:
+        user: ${{ secrets.NUGET_TRUSTED_PUBLISHING_USER || 'KaustavCodes' }}
+
+    - name: Publish to NuGet.org (Trusted Publishing)
+      if: steps.nuget_login.outcome == 'success'
+      run: dotnet nuget push ./nupkg/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ steps.nuget_login.outputs.NUGET_API_KEY }} --skip-duplicate
